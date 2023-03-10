@@ -192,6 +192,13 @@ func (db *DB) Close() error {
 	return nil
 }
 
+// Flush flushes out any in-memory data to disk.
+func (db *DB) Flush() error {
+	db.mu.Lock()
+	defer db.mu.Unlock()
+	return db.file.Sync()
+}
+
 // Save writes a snapshot of the database to a writer. This operation blocks all
 // writes, but not reads. This can be used for snapshots and backups for pure
 // in-memory databases using the ":memory:". Database that persist to disk
