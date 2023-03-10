@@ -1,4 +1,4 @@
-module github.com/tidwall/buntdb
+module github.com/statechannels/buntdb
 
 go 1.18
 
